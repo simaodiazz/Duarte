@@ -17,15 +17,31 @@ User.init(
             allowNull: false  
         },
 
-        code: {
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        fingerprintCode: {
             type: DataTypes.STRING,
             allowNull: true
         },
 
-        historic: {
+        accessHistory: {
             type: DataTypes.JSON,
             allowNull: false,
             defaultValue: ""
+        },
+
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         }
     },
     {
@@ -36,8 +52,10 @@ User.init(
 )
 
 User.beforeCreate((user) => {
-    user.password = Bcrypt.hashSync(user.password, 10)
-})  
+    const salt = Bcrypt.genSaltSync(10)
+    const hash = Bcrypt.hashSync(user.password, salt)
+    user.password = hash
+})
 
 module.exports = {
     User

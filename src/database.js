@@ -2,8 +2,8 @@ const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
     'express',
-    'simaodiazz',
-    'simaopks009',
+    'root',
+    '',
     {
         dialect: "mysql",
         host: "localhost"

@@ -4,3 +4,7 @@ class UserDTO {
         this.name = name
     }
 }
+
+module.exports = {
+    UserDTO
+}
